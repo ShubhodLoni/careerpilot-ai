@@ -1,6 +1,7 @@
 import Navbar from "../components/layout/Navbar";
 import FeatureOrbit from "../components/landing/FeatureOrbit";
 import AIAgentOrb from "../components/landing/AIAgentOrb";
+import ResumeUpload from "../components/upload/ResumeUpload";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
 
       <Navbar />
 
+      {/* HERO SECTION */}
       <section className="relative z-10 flex min-h-screen flex-col items-center px-6 pt-40">
 
         {/* Badge */}
@@ -23,23 +25,23 @@ export default function Home() {
         </div>
 
         {/* Heading */}
-        <h1 className="max-w-4xl text-center text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
+        <h1 className="max-w-5xl text-center text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
           Your Autonomous Career Intelligence Agent
         </h1>
 
         {/* Description */}
         <p className="mt-6 max-w-2xl text-center text-lg text-slate-400">
-          Upload your resume and let your AI Career Agent analyze,
+          Upload your resume and let CareerPilot AI analyze,
           evaluate, score and accelerate your career journey.
         </p>
 
-        {/* Orb Section */}
-        <div className="relative mt-24 mb-16">
+        {/* Orb */}
+        <div className="relative mt-24 mb-20">
           <FeatureOrbit />
           <AIAgentOrb />
         </div>
 
-        {/* Status Card */}
+        {/* Status */}
         <div className="rounded-2xl border border-white/10 bg-white/5 px-8 py-5 backdrop-blur-xl">
           <p className="text-sm text-slate-400">
             Agent Status
@@ -55,7 +57,7 @@ export default function Home() {
           Launch Career Agent
         </button>
 
-        {/* Activity */}
+        {/* Activity Panel */}
         <div className="mt-16 mb-20 w-full max-w-2xl rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl">
 
           <h2 className="mb-6 text-xl font-semibold">
@@ -63,6 +65,7 @@ export default function Home() {
           </h2>
 
           <div className="space-y-4">
+
             <div className="flex items-center gap-3">
               <span className="text-green-400">✓</span>
               <span>Resume Uploaded</span>
@@ -87,11 +90,16 @@ export default function Home() {
               <span className="text-green-400">✓</span>
               <span>Job Recommendations Ready</span>
             </div>
+
           </div>
 
         </div>
 
       </section>
+
+      {/* RESUME UPLOAD SECTION */}
+      <ResumeUpload />
+
     </main>
   );
 }
