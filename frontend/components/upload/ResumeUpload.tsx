@@ -107,97 +107,118 @@ export default function ResumeUpload() {
         </button>
 
         {result && (
-  <div className="mt-10 space-y-6">
+          <div className="mt-10 space-y-6">
 
-    {/* ATS Score */}
-    <div className="rounded-3xl border border-purple-500/20 bg-white/5 p-6 backdrop-blur-xl">
-      <h3 className="text-lg font-semibold text-purple-300">
-        ATS Score
-      </h3>
+            {/* ATS Score */}
+            <div className="rounded-3xl border border-purple-500/20 bg-white/5 p-6 backdrop-blur-xl">
+              <h3 className="text-lg font-semibold text-purple-300">
+                ATS Score
+              </h3>
 
-      <ATSGauge score={result.atsScore} />
-    </div>
-
-    {/* Skills Found */}
-    <div className="rounded-3xl border border-green-500/20 bg-white/5 p-6 backdrop-blur-xl">
-      <h3 className="mb-4 text-lg font-semibold text-green-400">
-        Skills Found
-      </h3>
-
-      <div className="flex flex-wrap gap-3">
-        {result.skillsFound?.map(
-          (skill: string, index: number) => (
-            <span
-              key={index}
-              className="rounded-full bg-green-500/20 px-4 py-2 text-green-300"
-            >
-              {skill}
-            </span>
-          )
-        )}
-      </div>
-    </div>
-
-    {/* Missing Skills */}
-    <div className="rounded-3xl border border-red-500/20 bg-white/5 p-6 backdrop-blur-xl">
-      <h3 className="mb-4 text-lg font-semibold text-red-400">
-        Missing Skills
-      </h3>
-
-      <div className="flex flex-wrap gap-3">
-        {result.missingSkills?.map(
-          (skill: string, index: number) => (
-            <span
-              key={index}
-              className="rounded-full bg-red-500/20 px-4 py-2 text-red-300"
-            >
-              {skill}
-            </span>
-          )
-        )}
-      </div>
-    </div>
-
-    {/* Recommended Roles */}
-    <div className="rounded-3xl border border-blue-500/20 bg-white/5 p-6 backdrop-blur-xl">
-      <h3 className="mb-4 text-lg font-semibold text-blue-400">
-        Recommended Roles
-      </h3>
-
-      <div className="space-y-3">
-        {result.recommendedRoles?.map(
-          (role: string, index: number) => (
-            <div
-              key={index}
-              className="rounded-xl bg-blue-500/10 p-3"
-            >
-              {role}
+              <ATSGauge score={result.atsScore} />
             </div>
-          )
-        )}
-      </div>
-    </div>
-{/* Career Roadmap */}
-<div className="rounded-3xl border border-yellow-500/20 bg-white/5 p-6 backdrop-blur-xl">
-  <h3 className="mb-4 text-lg font-semibold text-yellow-400">
-    Career Roadmap
-  </h3>
 
-  <div className="space-y-3">
-    {result.careerRoadmap?.map(
-      (step: string, index: number) => (
-        <div
-          key={index}
-          className="rounded-xl bg-yellow-500/10 p-3"
-        >
-          {index + 1}. {step}
-        </div>
-      )
-    )}
-  </div>
-</div>
-  </div>
-)}
+            {/* Skills Found */}
+            <div className="rounded-3xl border border-green-500/20 bg-white/5 p-6 backdrop-blur-xl">
+              <h3 className="mb-4 text-lg font-semibold text-green-400">
+                Skills Found
+              </h3>
+
+              <div className="flex flex-wrap gap-3">
+                {result.skillsFound?.map(
+                  (skill: string, index: number) => (
+                    <span
+                      key={index}
+                      className="rounded-full bg-green-500/20 px-4 py-2 text-green-300"
+                    >
+                      {skill}
+                    </span>
+                  )
+                )}
+              </div>
+            </div>
+
+            {/* Missing Skills */}
+            <div className="rounded-3xl border border-red-500/20 bg-white/5 p-6 backdrop-blur-xl">
+              <h3 className="mb-4 text-lg font-semibold text-red-400">
+                Missing Skills
+              </h3>
+
+              <div className="flex flex-wrap gap-3">
+                {result.missingSkills?.map(
+                  (skill: string, index: number) => (
+                    <span
+                      key={index}
+                      className="rounded-full bg-red-500/20 px-4 py-2 text-red-300"
+                    >
+                      {skill}
+                    </span>
+                  )
+                )}
+              </div>
+            </div>
+
+
+
+            {/* Career Match Analysis */}
+            <div className="rounded-3xl border border-indigo-500/20 bg-white/5 p-6 backdrop-blur-xl">
+              <h3 className="mb-4 text-lg font-semibold text-indigo-400">
+                🎯 Career Match Analysis
+              </h3>
+
+              {result.careerMatches?.length > 0 ? (
+                <div className="space-y-4">
+                  {result.careerMatches.map(
+                    (
+                      career: { role: string; matchScore: number },
+                      index: number
+                    ) => (
+                      <div
+                        key={index}
+                        className="rounded-xl bg-indigo-500/10 p-4"
+                      >
+                        <div className="mb-2 flex justify-between">
+                          <span className="font-medium text-white">
+                            {career.role}
+                          </span>
+
+                          <span className="font-bold text-indigo-300">
+                            {career.matchScore}%
+                          </span>
+                        </div>
+
+                        <div className="h-2 w-full rounded-full bg-slate-700">
+                          <div
+                            className="h-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"
+                            style={{
+                              width: `${career.matchScore}%`,
+                            }}
+                          />
+                        </div>
+                      </div>
+                    )
+                  )}
+                </div>
+              ) : (
+                <p className="text-slate-400">
+                  No career matches available.
+                </p>
+              )}
+            </div>
+
+           
+          
+            <div className="mt-6 rounded-3xl border border-purple-500/20 bg-white/5 p-6 backdrop-blur-xl">
+              <h2 className="text-xl font-bold text-purple-400 mb-4">
+                🤖 AI Career Coach
+              </h2>
+
+              <div className="whitespace-pre-wrap rounded-2xl bg-slate-900/40 p-6 text-slate-200 text-lg leading-8 font-medium">
+                {result.aiFeedback}
+              </div>
+            </div>
+          </div>
+        )}
 
       </div>
     </section>

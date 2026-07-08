@@ -1,5 +1,7 @@
 package com.careerpilot.backend.controller;
 
+import com.careerpilot.backend.services.CareerMatchService;
+import com.careerpilot.backend.services.AIAnalysisService;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -17,10 +19,20 @@ import java.util.Map;
 @CrossOrigin(origins = "http://localhost:3000")
 public class ResumeController {
 
+    private final AIAnalysisService aiService;
+    private final CareerMatchService careerMatchService;
+
+    public ResumeController(
+            AIAnalysisService aiService,
+            CareerMatchService careerMatchService) {
+
+        this.aiService = aiService;
+        this.careerMatchService = careerMatchService;
+    }
+
     @PostMapping("/upload")
     public ResponseEntity<?> uploadResume(
-            @RequestParam("file") MultipartFile file
-    ) {
+            @RequestParam("file") MultipartFile file) {
 
         try {
 
@@ -60,10 +72,12 @@ public class ResumeController {
             List<String> foundSkills = new ArrayList<>();
 
             for (String skill : skillDatabase) {
-                if (resumeText.contains(skill.toLowerCase())) {
+                if (resumeText.contains(skill)) {
                     foundSkills.add(skill);
                 }
             }
+            List<Map<String, Object>> careerMatches =
+        careerMatchService.getCareerMatches(foundSkills);
 
             int atsScore = Math.min(foundSkills.size() * 5, 100);
 
@@ -86,92 +100,62 @@ public class ResumeController {
 
             List<String> recommendedRoles = new ArrayList<>();
 
-            if (foundSkills.contains("java")
-                    && foundSkills.contains("spring boot")) {
+for (Map<String, Object> career : careerMatches) {
 
-                recommendedRoles.add("Backend Developer");
-                recommendedRoles.add("Java Developer");
-            }
+    int score = (Integer) career.get("matchScore");
 
-            if (foundSkills.contains("sql")
-                    || foundSkills.contains("power bi")
-                    || foundSkills.contains("data analysis")) {
+    if (score >= 50) {
+        recommendedRoles.add(
+                career.get("role").toString()
+        );
+    }
+}
 
-                recommendedRoles.add("Data Analyst");
-                recommendedRoles.add("Data Engineer");
-            }
+         
 
-            if (foundSkills.contains("python")
-                    || foundSkills.contains("machine learning")) {
+           
 
-                recommendedRoles.add("Data Scientist");
-                recommendedRoles.add("ML Engineer");
-            }
-
-            List<String> careerRoadmap = new ArrayList<>();
-
-            for (String skill : missingSkills) {
-
-                switch (skill.toLowerCase()) {
-
-                    case "docker":
-                        careerRoadmap.add(
-                                "Learn Docker and containerization basics"
-                        );
-                        break;
-
-                    case "aws":
-                        careerRoadmap.add(
-                                "Learn AWS Cloud fundamentals"
-                        );
-                        break;
-
-                    case "azure":
-                        careerRoadmap.add(
-                                "Learn Microsoft Azure services"
-                        );
-                        break;
-
-                    case "spring boot":
-                        careerRoadmap.add(
-                                "Build a REST API using Spring Boot"
-                        );
-                        break;
-
-                    case "react":
-                        careerRoadmap.add(
-                                "Build a frontend project using React"
-                        );
-                        break;
-                }
-            }
-
-            careerRoadmap.add(
-                    "Build at least 2 portfolio projects"
-            );
-
-            careerRoadmap.add(
-                    "Apply for internships and entry-level roles"
-            );
+            String aiFeedback = aiService.analyzeResume(
+                    text.substring(
+                            0,
+                            Math.min(text.length(), 4000)));
 
             Map<String, Object> response = new HashMap<>();
 
-            response.put("fileName", file.getOriginalFilename());
-            response.put("fileSize", file.getSize());
-            response.put("status", "Analysis Completed");
-            response.put("atsScore", atsScore);
-            response.put("skillsFound", foundSkills);
-            response.put("missingSkills", missingSkills);
-            response.put("recommendedRoles", recommendedRoles);
-            response.put("careerRoadmap", careerRoadmap);
+            response.put("fileName",
+                    file.getOriginalFilename());
+
+            response.put("fileSize",
+                    file.getSize());
+
+            response.put("status",
+                    "Analysis Completed");
+
+            response.put("atsScore",
+                    atsScore);
+
+            response.put("skillsFound",
+                    foundSkills);
+
+            response.put("missingSkills",
+                    missingSkills);
+
+           
+
+            response.put("careerMatches",
+                    careerMatches);
+
+           
+            
+
+            response.put("aiFeedback",
+                    aiFeedback);
 
             response.put(
                     "resumePreview",
                     text.substring(
                             0,
-                            Math.min(text.length(), 500)
-                    )
-            );
+                            Math.min(text.length(), 500)));
 
             return ResponseEntity.ok(response);
 
@@ -179,9 +163,13 @@ public class ResumeController {
 
             Map<String, String> error = new HashMap<>();
 
-            error.put("error", e.getMessage());
+            error.put(
+                    "error",
+                    e.getMessage());
 
-            return ResponseEntity.badRequest().body(error);
+            return ResponseEntity
+                    .badRequest()
+                    .body(error);
         }
     }
 }
