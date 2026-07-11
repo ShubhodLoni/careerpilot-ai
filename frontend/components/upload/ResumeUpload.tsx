@@ -2,7 +2,7 @@
 import ATSGauge from "../dashboard/ATSGauge";
 import { useState } from "react";
 
-const API_BASE_URL = "http://localhost:8080";
+const API_BASE_URL = "https://careerpilot-ai-2-1pxd.onrender.com";
 
 export default function ResumeUpload() {
   const [fileName, setFileName] = useState("");
