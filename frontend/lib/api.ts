@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://careerpilot-ai-2-1pxd.onrender.com";
+const API_BASE_URL = "https://careerpilot-ai-3-mhol.onrender.com";
 
 export async function uploadResume(file: File) {
   const formData = new FormData();
