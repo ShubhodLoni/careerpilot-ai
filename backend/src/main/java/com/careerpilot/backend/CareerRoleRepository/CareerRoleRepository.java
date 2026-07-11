@@ -14,7 +14,9 @@ public class CareerRoleRepository {
 
         List<CareerRole> roles = new ArrayList<>();
 
-        // DATA
+        // =========================
+        // DATA & ANALYTICS
+        // =========================
 
         roles.add(new CareerRole(
                 "Data Analyst",
@@ -25,6 +27,18 @@ public class CareerRoleRepository {
                         "excel",
                         "power bi",
                         "python"
+                ),
+                Arrays.asList(
+                        "Advanced SQL",
+                        "Power BI Masterclass",
+                        "Excel for Data Analytics"
+                ),
+                Arrays.asList(
+                        "tableau",
+                        "statistics",
+                        "etl",
+                        "data modeling",
+                        "business intelligence"
                 )
         ));
 
@@ -36,6 +50,18 @@ public class CareerRoleRepository {
                         "sql",
                         "excel",
                         "power bi"
+                ),
+                Arrays.asList(
+                        "Business Analysis Fundamentals",
+                        "Power BI Dashboarding",
+                        "Advanced Excel"
+                ),
+                Arrays.asList(
+                        "stakeholder management",
+                        "agile",
+                        "jira",
+                        "requirement gathering",
+                        "product analytics"
                 )
         ));
 
@@ -49,6 +75,18 @@ public class CareerRoleRepository {
                         "pandas",
                         "numpy",
                         "sql"
+                ),
+                Arrays.asList(
+                        "Machine Learning Specialization",
+                        "Data Science with Python",
+                        "Advanced SQL"
+                ),
+                Arrays.asList(
+                        "tensorflow",
+                        "pytorch",
+                        "aws",
+                        "docker",
+                        "mlops"
                 )
         ));
 
@@ -62,10 +100,47 @@ public class CareerRoleRepository {
                         "spark",
                         "airflow",
                         "aws"
+                ),
+                Arrays.asList(
+                        "AWS Cloud Practitioner",
+                        "Apache Spark Fundamentals",
+                        "Apache Airflow Essentials"
+                ),
+                Arrays.asList(
+                        "kafka",
+                        "snowflake",
+                        "databricks",
+                        "terraform",
+                        "azure"
                 )
         ));
 
-        // SOFTWARE
+        roles.add(new CareerRole(
+                "Analytics Engineer",
+                "Data & Analytics",
+                "₹8-18 LPA",
+                Arrays.asList(
+                        "sql",
+                        "python",
+                        "power bi"
+                ),
+                Arrays.asList(
+                        "Analytics Engineering",
+                        "Data Modeling",
+                        "Advanced SQL"
+                ),
+                Arrays.asList(
+                        "dbt",
+                        "snowflake",
+                        "bigquery",
+                        "airflow",
+                        "data warehousing"
+                )
+        ));
+
+        // =========================
+        // SOFTWARE DEVELOPMENT
+        // =========================
 
         roles.add(new CareerRole(
                 "Java Developer",
@@ -75,6 +150,18 @@ public class CareerRoleRepository {
                         "java",
                         "spring boot",
                         "sql"
+                ),
+                Arrays.asList(
+                        "Spring Boot Masterclass",
+                        "REST API Development",
+                        "Advanced SQL"
+                ),
+                Arrays.asList(
+                        "microservices",
+                        "docker",
+                        "redis",
+                        "aws",
+                        "system design"
                 )
         ));
 
@@ -87,6 +174,18 @@ public class CareerRoleRepository {
                         "spring boot",
                         "mysql",
                         "docker"
+                ),
+                Arrays.asList(
+                        "Spring Boot Masterclass",
+                        "Docker Essentials",
+                        "MySQL Advanced"
+                ),
+                Arrays.asList(
+                        "microservices",
+                        "redis",
+                        "kubernetes",
+                        "aws",
+                        "system design"
                 )
         ));
 
@@ -100,10 +199,47 @@ public class CareerRoleRepository {
                         "html",
                         "css",
                         "node.js"
+                ),
+                Arrays.asList(
+                        "React Complete Guide",
+                        "JavaScript Advanced",
+                        "Node.js Bootcamp"
+                ),
+                Arrays.asList(
+                        "next.js",
+                        "typescript",
+                        "mongodb",
+                        "aws",
+                        "system design"
                 )
         ));
 
-        // AI
+        roles.add(new CareerRole(
+                "Software Engineer",
+                "Software Development",
+                "₹6-20 LPA",
+                Arrays.asList(
+                        "java",
+                        "python",
+                        "git"
+                ),
+                Arrays.asList(
+                        "DSA Masterclass",
+                        "System Design Basics",
+                        "Git & GitHub"
+                ),
+                Arrays.asList(
+                        "microservices",
+                        "cloud computing",
+                        "docker",
+                        "kubernetes",
+                        "design patterns"
+                )
+        ));
+
+        // =========================
+        // AI & MACHINE LEARNING
+        // =========================
 
         roles.add(new CareerRole(
                 "AI Engineer",
@@ -114,6 +250,18 @@ public class CareerRoleRepository {
                         "machine learning",
                         "tensorflow",
                         "pytorch"
+                ),
+                Arrays.asList(
+                        "Deep Learning Specialization",
+                        "TensorFlow Developer Course",
+                        "PyTorch Fundamentals"
+                ),
+                Arrays.asList(
+                        "rag",
+                        "langchain",
+                        "vector databases",
+                        "llms",
+                        "mlops"
                 )
         ));
 
@@ -126,6 +274,18 @@ public class CareerRoleRepository {
                         "machine learning",
                         "aws",
                         "docker"
+                ),
+                Arrays.asList(
+                        "Machine Learning Specialization",
+                        "AWS ML Foundations",
+                        "Docker Essentials"
+                ),
+                Arrays.asList(
+                        "tensorflow",
+                        "pytorch",
+                        "kubernetes",
+                        "mlops",
+                        "feature engineering"
                 )
         ));
 
@@ -138,10 +298,24 @@ public class CareerRoleRepository {
                         "langchain",
                         "vector database",
                         "llms"
+                ),
+                Arrays.asList(
+                        "LangChain Masterclass",
+                        "Vector Databases",
+                        "Generative AI Engineering"
+                ),
+                Arrays.asList(
+                        "rag",
+                        "agents",
+                        "llmops",
+                        "prompt engineering",
+                        "fine tuning"
                 )
         ));
 
-        // CLOUD
+        // =========================
+        // CLOUD & DEVOPS
+        // =========================
 
         roles.add(new CareerRole(
                 "Cloud Engineer",
@@ -152,6 +326,18 @@ public class CareerRoleRepository {
                         "azure",
                         "docker",
                         "kubernetes"
+                ),
+                Arrays.asList(
+                        "AWS Cloud Practitioner",
+                        "Azure Fundamentals",
+                        "Kubernetes for Beginners"
+                ),
+                Arrays.asList(
+                        "terraform",
+                        "jenkins",
+                        "linux",
+                        "monitoring",
+                        "gcp"
                 )
         ));
 
@@ -164,10 +350,24 @@ public class CareerRoleRepository {
                         "aws",
                         "linux",
                         "git"
+                ),
+                Arrays.asList(
+                        "Docker Essentials",
+                        "Linux Administration",
+                        "Git & GitHub Mastery"
+                ),
+                Arrays.asList(
+                        "kubernetes",
+                        "terraform",
+                        "jenkins",
+                        "prometheus",
+                        "grafana"
                 )
         ));
 
-        // CYBER
+        // =========================
+        // CYBER SECURITY
+        // =========================
 
         roles.add(new CareerRole(
                 "Cyber Security Analyst",
@@ -177,6 +377,18 @@ public class CareerRoleRepository {
                         "networking",
                         "security",
                         "linux"
+                ),
+                Arrays.asList(
+                        "Ethical Hacking",
+                        "Network Security Fundamentals",
+                        "Linux Security"
+                ),
+                Arrays.asList(
+                        "penetration testing",
+                        "siem",
+                        "cloud security",
+                        "incident response",
+                        "soc operations"
                 )
         ));
 

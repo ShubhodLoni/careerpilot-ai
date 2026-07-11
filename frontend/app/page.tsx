@@ -1,7 +1,13 @@
 import Navbar from "../components/layout/Navbar";
 import FeatureOrbit from "../components/landing/FeatureOrbit";
 import AIAgentOrb from "../components/landing/AIAgentOrb";
+
+import Features from "../components/Features";
+import Roadmap from "../components/Roadmap";
+import DashboardPreview from "../components/DashboardPreview";
+
 import ResumeUpload from "../components/upload/ResumeUpload";
+
 
 export default function Home() {
   return (
@@ -17,7 +23,10 @@ export default function Home() {
       <Navbar />
 
       {/* HERO SECTION */}
-      <section className="relative z-10 flex min-h-screen flex-col items-center px-6 pt-40">
+      <section
+        id="home"
+        className="relative z-10 flex min-h-screen flex-col items-center px-6 pt-40"
+      >
 
         {/* Badge */}
         <div className="mb-8 rounded-full border border-purple-500/20 bg-purple-500/10 px-5 py-2 text-sm text-purple-300">
@@ -97,8 +106,19 @@ export default function Home() {
 
       </section>
 
-      {/* RESUME UPLOAD SECTION */}
-      <ResumeUpload />
+      {/* FEATURES */}
+      <Features />
+
+      {/* ROADMAP */}
+      <Roadmap />
+
+      {/* DASHBOARD */}
+      <DashboardPreview />
+
+      {/* RESUME UPLOAD */}
+      <section id="resume-upload">
+        <ResumeUpload />
+      </section>
 
     </main>
   );

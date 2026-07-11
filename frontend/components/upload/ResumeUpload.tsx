@@ -167,33 +167,59 @@ export default function ResumeUpload() {
               </h3>
 
               {result.careerMatches?.length > 0 ? (
-                <div className="space-y-4">
+                <div className="space-y-5">
                   {result.careerMatches.map(
                     (
-                      career: { role: string; matchScore: number },
+                      career: {
+                        role: string;
+                        category: string;
+                        salaryRange: string;
+                        matchScore: number;
+                      },
                       index: number
                     ) => (
                       <div
                         key={index}
-                        className="rounded-xl bg-indigo-500/10 p-4"
+                        className="rounded-2xl border border-indigo-500/10 bg-indigo-500/5 p-5"
                       >
-                        <div className="mb-2 flex justify-between">
-                          <span className="font-medium text-white">
-                            {career.role}
-                          </span>
+                        <div className="flex items-start justify-between">
+                          <div>
+                            <h4 className="text-lg font-bold text-white">
+                              🎯 {career.role}
+                            </h4>
 
-                          <span className="font-bold text-indigo-300">
-                            {career.matchScore}%
-                          </span>
+                            <p className="mt-1 text-sm text-slate-400">
+                              📂 {career.category}
+                            </p>
+
+                            <p className="mt-1 text-sm text-green-400">
+                              💰 {career.salaryRange}
+                            </p>
+                          </div>
+
+                          <div className="text-right">
+                            <p className="text-2xl font-bold text-indigo-300">
+                              {career.matchScore}%
+                            </p>
+
+                            <p className="text-xs text-slate-500">
+                              Match Score
+                            </p>
+                          </div>
                         </div>
 
-                        <div className="h-2 w-full rounded-full bg-slate-700">
+                        <div className="mt-4 h-3 w-full rounded-full bg-slate-700">
                           <div
-                            className="h-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"
+                            className="h-3 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 transition-all duration-700"
                             style={{
                               width: `${career.matchScore}%`,
                             }}
                           />
+                        </div>
+
+                        <div className="mt-3 flex justify-between text-xs text-slate-400">
+                          <span>Beginner Fit</span>
+                          <span>Strong Fit</span>
                         </div>
                       </div>
                     )
@@ -205,9 +231,71 @@ export default function ResumeUpload() {
                 </p>
               )}
             </div>
+            {/* Missing Skills */}
+<div className="rounded-3xl border border-red-500/20 bg-white/5 p-6 backdrop-blur-xl">
+  <h3 className="mb-4 text-lg font-semibold text-red-400">
+    🚀 Skill Gaps to Unlock Better Roles
+  </h3>
 
-           
-          
+  {result.missingSkills?.length > 0 ? (
+    <div className="flex flex-wrap gap-3">
+      {result.missingSkills.map(
+        (skill: string, index: number) => (
+          <span
+            key={index}
+            className="rounded-full bg-red-500/20 px-4 py-2 text-red-300"
+          >
+            🔥 {skill}
+          </span>
+        )
+      )}
+    </div>
+  ) : (
+    <p className="text-green-400">
+      🎉 No major skill gaps detected!
+    </p>
+  )}
+</div>
+            {/* Recommended Learning */}
+<div className="rounded-3xl border border-emerald-500/20 bg-white/5 p-6 backdrop-blur-xl">
+  <h3 className="mb-4 text-lg font-semibold text-emerald-400">
+    🎓 Recommended Learning
+  </h3>
+
+  {result.recommendedCourses?.length > 0 ? (
+    <div className="space-y-4">
+      {result.recommendedCourses.map(
+        (
+          course: {
+            course: string;
+            missingSkill: string;
+          },
+          index: number
+        ) => (
+          <div
+            key={index}
+            className="rounded-xl bg-emerald-500/10 p-4"
+          >
+            <h4 className="font-semibold text-white">
+              {course.course}
+            </h4>
+
+            <p className="mt-1 text-sm text-slate-400">
+              {course.missingSkill}
+            </p>
+          </div>
+        )
+      )}
+    </div>
+  ) : (
+    <p className="text-slate-400">
+      No recommendations available.
+    </p>
+  )}
+</div>
+
+
+
             <div className="mt-6 rounded-3xl border border-purple-500/20 bg-white/5 p-6 backdrop-blur-xl">
               <h2 className="text-xl font-bold text-purple-400 mb-4">
                 🤖 AI Career Coach
