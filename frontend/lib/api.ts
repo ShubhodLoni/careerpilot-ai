@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:8080";
+const API_BASE_URL = "https://careerpilot-ai-2-lpxd.onrender.com";
 
 export async function uploadResume(file: File) {
   const formData = new FormData();
