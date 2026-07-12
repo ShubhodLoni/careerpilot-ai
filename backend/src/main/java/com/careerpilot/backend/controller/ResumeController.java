@@ -26,6 +26,7 @@ import com.careerpilot.backend.model.CareerRole;
 
 @RestController
 @RequestMapping("/api/resume")
+@CrossOrigin(origins = "https://careerpilot-ai-ynes-git-main-shubhod626s-projects.vercel.app/")
 public class ResumeController {
 
         private final AIAnalysisService aiService;
