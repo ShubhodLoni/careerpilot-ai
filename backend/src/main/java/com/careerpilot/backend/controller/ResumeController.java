@@ -26,7 +26,6 @@ import com.careerpilot.backend.model.CareerRole;
 
 @RestController
 @RequestMapping("/api/resume")
-@CrossOrigin(origins = "http://localhost:3000")
 public class ResumeController {
 
         private final AIAnalysisService aiService;
