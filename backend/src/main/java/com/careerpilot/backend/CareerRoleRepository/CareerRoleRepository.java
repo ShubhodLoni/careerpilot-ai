@@ -313,10 +313,6 @@ public class CareerRoleRepository {
                 )
         ));
 
-        // =========================
-        // CLOUD & DEVOPS
-        // =========================
-
         roles.add(new CareerRole(
                 "Cloud Engineer",
                 "Cloud & DevOps",

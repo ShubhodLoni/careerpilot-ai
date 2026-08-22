@@ -80,7 +80,7 @@ public class AIAnalysisService {
                                         """ + resumeText;
 
                         Map<String, Object> request = Map.of(
-                                        "model", "llama-3.3-70b-versatile",
+                                        "model", "llama-3.1-8b-instant",
                                         "messages", new Object[] {
                                                         Map.of(
                                                                         "role", "user",
