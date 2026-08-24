@@ -17,6 +17,7 @@ public class AIAnalysisService {
         public String analyzeResume(String resumeText) {
 
                 try {
+                        System.out.println("Groq Key Loaded: " + (apiKey != null));
 
                         WebClient webClient = WebClient.builder()
                                         .baseUrl("https://api.groq.com/openai/v1")
@@ -94,6 +95,7 @@ public class AIAnalysisService {
                                         .retrieve()
                                         .bodyToMono(String.class)
                                         .block();
+                                        System.out.println("Groq Response: " + response);
 
                         ObjectMapper mapper = new ObjectMapper();
                         JsonNode root = mapper.readTree(response);
@@ -105,7 +107,8 @@ public class AIAnalysisService {
                                         .asText();
 
                 } catch (Exception e) {
-                        return "AI Analysis Error: " + e.getMessage();
-                }
+    e.printStackTrace();
+    return "AI Analysis Error: " + e.getMessage();
+}
         }
 }

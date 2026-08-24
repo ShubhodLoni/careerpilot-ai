@@ -49,12 +49,15 @@ export default function ResumeUpload() {
       const data = await response.json();
 
       setResult(data);
-    } catch (error) {
-      console.error(error);
-      alert("Failed to analyze resume");
-    } finally {
-      setLoading(false);
-    }
+    } catch (error: any) {
+  console.error("FULL ERROR:", error);
+
+  if (error instanceof Error) {
+    alert(error.message);
+  } else {
+    alert(JSON.stringify(error));
+  }
+}
   };
 
   return (
